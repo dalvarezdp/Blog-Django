@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Ingresa al sistema{% endblock %}
+
+
+{% block contenido %}
+    <div class="container">
+	<h2 class="form-signin-heading">Ingresar al sistema</h2>
+	<form class="form-horizontal" id='formulario' method='post' action=''>{% csrf_token %}
+		<table>{{formulario}}</table>
+		<p><input class="btn btn-large btn-primary" type='submit' value='Ingresar' /></p>
+	</form>	
+
+{% endblock %}

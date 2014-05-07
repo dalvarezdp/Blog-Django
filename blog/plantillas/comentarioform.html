@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+	<div class="container">
+	<h2 class="form-signin-heading">Agregar comentario</h2>
+	<form id='formulario' method='post' enctype='multipart/form-data' action=''>{% csrf_token %}{{formulario}}
+		<p><input class="btn btn-large btn-primary" type='submit' value='Confirmar' /></p>
+	</form>	
+	</div> <!-- /container -->
+
+{% endblock %}

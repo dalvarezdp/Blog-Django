@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang='es'>
+	<head>
+		<meta charset='utf-8'>
+		<title>{% block titulo %}{% endblock %}</title>
+		<style>{% block style_css %}{% endblock %}</style>
+		<!-- Bootstrap-->
+    		<link href="{{STATIC_URL}}css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="{{STATIC_URL}}css/base.css" rel="stylesheet">
+		
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+    		<script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+	</head>
+	<body>
+	
+	<header>
+
+
+		<div class="navbar navbar-inverse navbar-fixed-top">
+ 		   <div class="navbar-inner">
+    		      <div class="container">
+ 
+      			<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        		   <span class="icon-bar"></span>
+        		   <span class="icon-bar"></span>
+        		   <span class="icon-bar"></span>
+      			</a>
+ 
+      			<!-- Be sure to leave the brand out there if you want it shown -->
+      			<a class="brand" href='/'>Blog</a>
+			<p class="navbar-text pull-right">
+              			{% block sesion %}{% endblock %}
+            		</p>
+			<ul class="nav">
+			  <li class="active">
+			    <a href='/'>Inicio</a>
+			  </li>
+			  <li><a href='/usuarios'>Usuarios</a></li>
+			  <li><a href='/sobre'>Sobre</a></li>
+			  <li><a href='/contacto'>Contactanos</a></li>
+			</ul>
+ 
+      			<!-- Everything you want hidden at 940px or less, place within here -->
+     	 		<div class="nav-collapse collapse">
+        		<!-- .nav, .navbar-search, .navbar-form, etc -->
+     		     	</div>
+ 
+		    </div>
+		  </div>
+		</div>
+
+
+
+		<hr>
+	</header>
+
+	<div class="container-fluid">
+	  <div class="row-fluid">
+	    <div class="span4">
+	      <!--Sidebar content-->
+		<br>
+		<br>
+		{% block sidebar %}{% endblock %}
+	    </div>
+	    <div class="span8">
+	      <!--Body content-->
+		<br>
+		<br>
+		{% block contenido %}{% endblock %}
+	    </div>
+	  </div>
+	</div>
+
+		
+	
+	
+	</body>
+</html>

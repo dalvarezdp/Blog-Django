@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Usuarios registrados{% endblock %}
+
+
+{% block activo %}{% endblock %}
+
+{% block contenido %}
+	<h1>Usuarios del blog</h1>
+	<br>
+	{% for dato in usuarios %}
+	<blockquote>
+	  {% if dato.is_staff%}
+	  <p><b>{{dato.username|capfirst}}</b></p>
+	  <small><a href='{% url principal.views.nostaff dato.id %}'>Eliminar colaborador</a></small>
+	{% elif not dato.username == 'Anonimo' %}
+	  <p>{{dato.username|capfirst}}</p>	  
+	  <small><a href='{% url principal.views.staff dato.id %}'>Hacer colaborador</a></small>
+	{% endif %}
+	  
+	</blockquote>
+	{% empty %}
+		<p>Ningun usuario ha registrado entradas aun.</p>
+	{% endfor %}
+
+{% endblock %}

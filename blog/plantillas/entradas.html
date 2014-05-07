@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Blog{% endblock %}
+
+{% block style_css %}
+	img { width:100px;}
+{% endblock %}
+
+
+{% block contenido %}
+	<a href="/entrada/nueva">Agregar una entrada</a>
+
+	<ul>
+        	{% for dato in datos %}
+		<li>
+			<a href='{% url principal.views.detalle_entrada dato.id %}'>{{dato.titulo}}</a><br>
+			<img src='{{MEDIA_URL}}{{dato.imagen}}' class="img-rounded">
+		</li>
+		{% empty %}
+			<li>Aun no hay entradas registradas.</li>
+		{% endfor %}
+	</ul>
+
+{% endblock %}

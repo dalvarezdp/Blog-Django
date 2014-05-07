@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Nuevo Usuario{% endblock %}
+
+
+{% block contenido %}
+	<div class="container">
+	<h2 class="form-signin-heading">Nuevo Usuario</h2>
+	<form id='formulario' method='post' enctype='multipart/form-data' action=''>{% csrf_token %}{{formulario}}
+		<p><input class="btn btn-large btn-primary" type='submit' value='Registrar' /></p>
+	</form>	
+	</div> <!-- /container -->
+
+{% endblock %}

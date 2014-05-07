@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Blog{% endblock %}
+
+{% block style_css %}
+	img { width:150px;}
+{% endblock %}
+
+{% block sesion %}<a href="/ingresar" class="btn btn-large btn-primary">Iniciar Sesion</a>  <a href="/usuario/nuevo" class="btn btn-large btn-primary">Registrarse</a>
+
+	
+
+{% endblock %}
+
+{% block sidebar %}{% endblock %}
+    
+{% block contenido %}
+	<ul>
+		{% for dato in datos %}
+		<ul class="media-list">
+		  <br>
+		  <li class="media">
+		    <a class="pull-left" href="#">
+		      <img class="media-object" src='{{MEDIA_URL}}{{dato.imagen}}'>
+		    </a>
+		    <div class="media-body">
+		      <p><h4 class="media-heading"><a href='{% url principal.views.detalle_entrada dato.id %}'>{{dato.titulo}}</a></h4></p>
+		      <p>{{dato.cuerpo}}</p>
+		      <!-- Nested media object -->
+		      <div class="media">
+		        ...
+		        <br>
+		     </div>
+		    </div>
+		  </li>
+		</ul>
+		{% empty %}
+	   	 <p>Aun no hay entradas registradas.</p>
+	  	{% endfor %}
+
+	</ul>
+{% endblock %}

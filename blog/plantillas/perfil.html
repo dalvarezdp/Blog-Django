@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Usuarios registrados{% endblock %}
+
+{% block sesion %}Bienvenido {{usuario.username|upper}} <a href="/cerrar">Cerrar sesion</a>{% endblock %}
+
+{% block activo %}{% endblock %}
+
+{% block sidebar %}
+
+	
+{% endblock %}
+
+{% block contenido %}
+	<h1>Perfil de {{usuario.username|capfirst}}</h1>
+	<dl class="dl-horizontal">
+  		<dt>Nombre: </dt>
+  		<dd>{{usuario.username}}</dd>
+		<dt>Primer apellido: </dt>
+  		<dd>{{usuario.first_name}}</dd>
+		<dt>Segundo apellido: </dt>
+  		<dd>{{usuario.last_name}}</dd>
+		<dt>Email: </dt>
+  		<dd>{{usuario.email}}</dd>
+	</dl>
+	<br>
+	<h3>Tus entradas</h3>
+	{% for item in entradas %}
+		{% if item.usuario == usuario %}
+		<dl class="dl-horizontal">
+  			<dt>Entrada: </dt>
+  			<dd>{{item}}</dd>
+			
+		</dl>
+		{% endif %}
+	{% empty %}
+		<p>Este usuario no ha registrado entradas aun.</p>
+	{% endfor %}
+
+
+	<h3>Tus comentarios</h3>
+	{% for dato in comentarios %}
+		{% if dato.usuario == usuario %}
+		<dl class="dl-horizontal">
+  			<dt>Comentario: </dt>
+  			<dd>{{dato}}</dd>
+			
+		</dl>
+		{% endif %}
+	{% empty %}
+		<p>Este usuario no ha registrado comentarios aun.</p>
+	{% endfor %}
+
+
+{% endblock %}

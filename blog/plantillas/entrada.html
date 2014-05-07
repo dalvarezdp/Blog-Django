@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block titulo %}{{entrada.titulo}}{% endblock %}
+
+{% block style_css %}
+	img { width:300px;}
+{% endblock %}
+
+{% block sesion %}<a href="/ingresar" class="btn btn-large btn-primary">Iniciar Sesion</a>  <a href="/usuario/nuevo" class="btn btn-large btn-primary">Registrarse</a>
+{% endblock %}
+
+{% block sidebar %}
+	<ul>
+		<ul class="media-list">
+		  <br>
+		  <li class="media">
+		    <div class="media-body">
+		      <p><h4><a href='{% url principal.views.voto_positivo entrada.id %}' class="btn btn-large btn-primary">Me gusta</a></h4></p>
+		      <p>Permite votar la entrada.</p>
+		      <p><h4><a href='{% url principal.views.voto_negativo entrada.id %}' class="btn btn-large btn-primary">No me gusta</a></h4></p>
+		      <p>Permite votar negaticamente la entrada.</p>
+		      <!-- Nested media object -->
+		      <div class="media">
+		        <br>
+		     </div>
+		    </div>
+		  </li>
+		</ul>
+	</ul>
+
+	
+{% endblock %}
+
+{% block contenido %}
+	<div id='titulo'>
+		<p><h1>{{entrada.titulo}}</h1><span class="badge badge-info">{{entrada.votos}}</span></p>
+	</div>
+	<p>Registrado {{entrada.tiempo_registro}} por {{entrada.usuario}}</p>
+	<center>
+	<div id='referencia'>
+		<img src='{{MEDIA_URL}}{{entrada.imagen}}' class="img-rounded">
+	</div>
+	
+	<div id='cuerpo'>
+		<p>{{entrada.cuerpo}}</p>
+	</div>
+	<form class="form-horizontal" id='formulario' method='post' action=''>{% csrf_token %}{{formulario}}
+		<p><input type='submit' value='Confirmar' /></p>
+	</form>
+	</center>
+	<div id='comentarios'>
+		<h2>Comentarios</h2>
+		<center>
+		{% for item in comentarios %}
+		<dl class="dl-horizontal">
+		  <dt>{{item.usuario}}</dt>
+		  <dd>{{item.texto}}</dd>
+		{% empty %}
+			<dd>Sin comentarios registrados</dd>
+		{% endfor %}
+		</dl>
+		</center>
+	</div>
+	<footer>
+		
+	</footer>
+{% endblock %}

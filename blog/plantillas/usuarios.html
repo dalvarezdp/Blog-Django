@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Usuarios registrados{% endblock %}
+
+
+{% block activo %}{% endblock %}
+
+{% block contenido %}
+	<h1>Usuarios del blog</h1>
+	<br>
+	{% for dato in usuarios %}
+	<blockquote>
+	  <p>{{dato.username|capfirst}}</p>
+	   {% for item in entradas %}
+		{% if item.usuario == dato %}
+	  	    <small>{{item}}</small>
+		{% endif %}
+	   {% empty %}
+		<p>Este usuario no ha registrado entradas aun.</p>
+	   {% endfor %}
+	</blockquote>
+	{% empty %}
+		<p>Ningun usuario ha registrado entradas aun.</p>
+	{% endfor %}
+
+{% endblock %}
